@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+
+<div class="text-center">
+
+    <table id="userTable" class="display" style="width:100%">
+        <thead>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+       var table = $('#userTable').DataTable({
+            "processing": true, // for show progress bar
+            //"serverSide": true, // for process server side
+            "filter": true, // this is for disable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            "ajax": {
+                'url': '@Url.Action("getAllUsers", "Home")',
+                "type": "GET",
+                "datatype": "json"
+
+            },
+            "columns": [
+                { "sTitle": "First Name", "data": "firstName" },
+                { "sTitle": "Last Name", "data": "lastName" },
+                { "sTitle": "Middle Name", "data": "middleName" },
+                { "sTitle": "Contact", "data": "contact" }
+            ]
+        });
+
+
+
+    });
+</script>
